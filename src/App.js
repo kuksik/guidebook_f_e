@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import TopBar from './TopBar';
-import DrawerUndockedExample from './LeftBar';
+import TopBar from './Modules/TopBar';
+import DrawerUndockedExample from './Modules/LeftBar';
 
 class App extends Component {
   render () {
