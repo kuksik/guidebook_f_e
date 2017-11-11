@@ -1,17 +1,17 @@
-import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
-// import createHelpers from './createHelpers';
-import createLogger from './logger';
+import logger from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
 
-export default function configureStore(initialState, helpersConfig) {
+import rootReducer from './reducers';
+
+export default function configureStore (initialState, helpersConfig) {
   // const helpers = createHelpers(helpersConfig);
   // const middleware = [thunk.withExtraArgument(helpers)];
 
-  let enhancer;
+  // let enhancer;
 
   // if (__DEV__) {
-    // middleware.push(createLogger());
+  // middleware.push(createLogger());
   // 
   //   // https://github.com/zalmoxisus/redux-devtools-extension#redux-devtools-extension
   //   let devToolsExtension = f => f;
@@ -28,7 +28,13 @@ export default function configureStore(initialState, helpersConfig) {
   // }
 
   // See https://github.com/rackt/redux/releases/tag/v3.1.0
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk),
+    applyMiddleware(logger)
+  );
+  // applyMiddleware(logger)
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   // if (__DEV__ && module.hot) {

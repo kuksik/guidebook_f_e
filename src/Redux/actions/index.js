@@ -1,8 +1,8 @@
 import { MOVE_LEFT_BAR } from '../actionTypes';
 
-export const toggleTodo = state => {
+export const moveLeftBar = (payload) => {
   return {
-    type: MOVE_LEFT_BAR,
-    state
+    payload,
+    type: MOVE_LEFT_BAR
   };
 };

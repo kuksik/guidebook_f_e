@@ -1,9 +1,9 @@
 import { MOVE_LEFT_BAR } from '../actionTypes';
 
-const leftBar = (state = [], action) => {
+const leftBar = (state = { leftBarVisible: false }, action) => {
   switch (action.type) {
     case MOVE_LEFT_BAR:
-      return action.state;
+      return { ...state, ...action.payload };
     default:
       return state;
   }

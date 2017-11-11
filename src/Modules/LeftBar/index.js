@@ -4,18 +4,21 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class DrawerUndockedExample extends Component {
+class LeftBar extends Component {
 
   constructor(props) {
     super(props);
     this.state = {open: false};
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
-  
-  handleClose = () => this.setState({open: false});
+  handleToggle = () => {
+    const { moveLeftBar, open } = this.props;
+    moveLeftBar({ leftBarVisible: !open });
+  };
 
   render () {
+    const { open } = this.props;
+
     return (
       <MuiThemeProvider>
         <RaisedButton
@@ -23,10 +26,10 @@ class DrawerUndockedExample extends Component {
           onClick={this.handleToggle}
         />
         <Drawer
-          docked={false}
           width={200}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          open={open}
+          docked={false}
+          onRequestChange={this.handleToggle}
         >
           <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
           <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
@@ -36,4 +39,4 @@ class DrawerUndockedExample extends Component {
   }
 };
 
-export default DrawerUndockedExample;
+export default LeftBar;
